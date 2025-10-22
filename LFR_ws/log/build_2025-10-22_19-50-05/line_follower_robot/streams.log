@@ -1,0 +1,49 @@
+[0.521s] Invoking command in '/home/bishal-victus/LFR_ws/src/line_follower_robot': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/bishal-victus/LFR_ws/build/line_follower_robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/line_follower_robot build --build-base /home/bishal-victus/LFR_ws/build/line_follower_robot/build install --record /home/bishal-victus/LFR_ws/build/line_follower_robot/install.log --single-version-externally-managed install_data
+[0.701s] running egg_info
+[0.701s] creating ../../build/line_follower_robot/line_follower_robot.egg-info
+[0.712s] writing ../../build/line_follower_robot/line_follower_robot.egg-info/PKG-INFO
+[0.712s] writing dependency_links to ../../build/line_follower_robot/line_follower_robot.egg-info/dependency_links.txt
+[0.712s] writing entry points to ../../build/line_follower_robot/line_follower_robot.egg-info/entry_points.txt
+[0.713s] writing requirements to ../../build/line_follower_robot/line_follower_robot.egg-info/requires.txt
+[0.713s] writing top-level names to ../../build/line_follower_robot/line_follower_robot.egg-info/top_level.txt
+[0.713s] writing manifest file '../../build/line_follower_robot/line_follower_robot.egg-info/SOURCES.txt'
+[0.735s] reading manifest file '../../build/line_follower_robot/line_follower_robot.egg-info/SOURCES.txt'
+[0.736s] adding license file 'LICENSE'
+[0.736s] writing manifest file '../../build/line_follower_robot/line_follower_robot.egg-info/SOURCES.txt'
+[0.736s] running build
+[0.736s] running build_py
+[0.736s] creating /home/bishal-victus/LFR_ws/build/line_follower_robot/build
+[0.736s] creating /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib
+[0.737s] creating /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib/line_follower_robot
+[0.737s] copying line_follower_robot/__init__.py -> /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib/line_follower_robot
+[0.737s] copying line_follower_robot/follower.py -> /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib/line_follower_robot
+[0.737s] running install
+[0.741s] running install_lib
+[0.752s] creating /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot
+[0.752s] copying /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib/line_follower_robot/__init__.py -> /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot
+[0.752s] copying /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib/line_follower_robot/follower.py -> /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot
+[0.752s] byte-compiling /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot/__init__.py to __init__.cpython-312.pyc
+[0.752s] byte-compiling /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot/follower.py to follower.cpython-312.pyc
+[0.754s] running install_data
+[0.754s] creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/ament_index
+[0.754s] creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/ament_index/resource_index
+[0.754s] creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/ament_index/resource_index/packages
+[0.754s] copying resource/line_follower_robot -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/ament_index/resource_index/packages
+[0.754s] copying package.xml -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot
+[0.754s] copying LICENSE -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot
+[0.754s] creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/launch
+[0.754s] copying launch/line_follow.launch.py -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/launch
+[0.754s] creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/worlds
+[0.754s] copying worlds/warehouse_world.sdf -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/worlds
+[0.754s] creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/urdf
+[0.754s] copying urdf/robot.urdf -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/urdf
+[0.754s] copying urdf/camera.xacro -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/urdf
+[0.754s] copying urdf/drive.xacro -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/urdf
+[0.754s] creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/config
+[0.754s] copying config/gz_bridge.yaml -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/config
+[0.754s] running install_egg_info
+[0.766s] Copying ../../build/line_follower_robot/line_follower_robot.egg-info to /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot-1.0.0-py3.12.egg-info
+[0.767s] running install_scripts
+[0.845s] Installing follower_node script to /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/line_follower_robot
+[0.845s] writing list of installed files to '/home/bishal-victus/LFR_ws/build/line_follower_robot/install.log'
+[0.865s] Invoked command in '/home/bishal-victus/LFR_ws/src/line_follower_robot' returned '0': DEBUGINFOD_URLS=https://debuginfod.ubuntu.com PYTHONPATH=/home/bishal-victus/LFR_ws/build/line_follower_robot/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/line_follower_robot build --build-base /home/bishal-victus/LFR_ws/build/line_follower_robot/build install --record /home/bishal-victus/LFR_ws/build/line_follower_robot/install.log --single-version-externally-managed install_data

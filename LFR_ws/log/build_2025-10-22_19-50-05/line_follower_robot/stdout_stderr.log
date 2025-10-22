@@ -1,0 +1,47 @@
+running egg_info
+creating ../../build/line_follower_robot/line_follower_robot.egg-info
+writing ../../build/line_follower_robot/line_follower_robot.egg-info/PKG-INFO
+writing dependency_links to ../../build/line_follower_robot/line_follower_robot.egg-info/dependency_links.txt
+writing entry points to ../../build/line_follower_robot/line_follower_robot.egg-info/entry_points.txt
+writing requirements to ../../build/line_follower_robot/line_follower_robot.egg-info/requires.txt
+writing top-level names to ../../build/line_follower_robot/line_follower_robot.egg-info/top_level.txt
+writing manifest file '../../build/line_follower_robot/line_follower_robot.egg-info/SOURCES.txt'
+reading manifest file '../../build/line_follower_robot/line_follower_robot.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../../build/line_follower_robot/line_follower_robot.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/bishal-victus/LFR_ws/build/line_follower_robot/build
+creating /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib
+creating /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib/line_follower_robot
+copying line_follower_robot/__init__.py -> /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib/line_follower_robot
+copying line_follower_robot/follower.py -> /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib/line_follower_robot
+running install
+running install_lib
+creating /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot
+copying /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib/line_follower_robot/__init__.py -> /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot
+copying /home/bishal-victus/LFR_ws/build/line_follower_robot/build/lib/line_follower_robot/follower.py -> /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot
+byte-compiling /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot/__init__.py to __init__.cpython-312.pyc
+byte-compiling /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot/follower.py to follower.cpython-312.pyc
+running install_data
+creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/ament_index
+creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/ament_index/resource_index
+creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/ament_index/resource_index/packages
+copying resource/line_follower_robot -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/ament_index/resource_index/packages
+copying package.xml -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot
+copying LICENSE -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot
+creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/launch
+copying launch/line_follow.launch.py -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/launch
+creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/worlds
+copying worlds/warehouse_world.sdf -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/worlds
+creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/urdf
+copying urdf/robot.urdf -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/urdf
+copying urdf/camera.xacro -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/urdf
+copying urdf/drive.xacro -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/urdf
+creating /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/config
+copying config/gz_bridge.yaml -> /home/bishal-victus/LFR_ws/install/line_follower_robot/share/line_follower_robot/config
+running install_egg_info
+Copying ../../build/line_follower_robot/line_follower_robot.egg-info to /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/python3.12/site-packages/line_follower_robot-1.0.0-py3.12.egg-info
+running install_scripts
+Installing follower_node script to /home/bishal-victus/LFR_ws/install/line_follower_robot/lib/line_follower_robot
+writing list of installed files to '/home/bishal-victus/LFR_ws/build/line_follower_robot/install.log'

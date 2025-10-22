@@ -1,0 +1,291 @@
+<?xml version="1.0"?>
+<!--
+  Copyright 2025 Bishal Dutta (Bishalduttaoffcial@gmail.com)
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<robot name="line_follower_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<!-- This file defines the robot's physical links and joints -->
+
+<!-- Include the Gazebo plugin definitions -->
+<xacro:include filename="$(find line_follower_robot)/urdf/drive.xacro"/>
+<xacro:include filename="$(find line_follower_robot)/urdf/camera.xacro"/>
+
+    <!-- Base Footprint: A non-visual link at the robot's center on the ground -->
+    <link name="base_footprint">
+    </link>
+
+    <!-- Base Link: The main chassis of the robot -->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.4 0.25 0.08"/>
+            </geometry>
+            <material name="blue">
+                 <color rgba="0.0 0.0 1.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="0.4 0.25 0.08"/>
+            </geometry>
+        </collision>
+        <inertial>
+             <mass value="8.0"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.347" ixy="0.0" ixz="0.0" 
+                     iyy="1.347" iyz="0.0" 
+                     izz="1.347"/>
+        </inertial>
+    </link>
+
+    <!-- Joint connecting the footprint to the chassis -->
+    <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0.05" rpy="0 0 0"/> <!-- Lowered chassis slightly -->
+    </joint>
+
+
+    <!-- === STABILITY MODIFICATION: Replaced 1 caster with 2 === -->
+
+    <!-- Front LEFT Caster Wheel -->
+    <link name="front_left_caster">
+        <visual>
+            <geometry>
+                <sphere radius="0.025"/>
+            </geometry>
+             <material name="gray">
+                <color rgba="0.6 0.6 0.6 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="0.025"/>
+            </geometry>
+             <surface>
+                <friction>
+                    <ode><mu>0.1</mu><mu2>0.1</mu2><slip1>1.0</slip1><slip2>1.0</slip2></ode>
+                </friction>
+            </surface>
+        </collision>
+         <inertial>
+            <mass value="0.1"/><origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+        </inertial>
+    </link>
+    <joint name="front_left_caster_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="front_left_caster"/>
+        <!-- Position at front-left corner -->
+        <origin xyz="0.18 0.1 -0.025" rpy="0 0 0"/> 
+    </joint>
+    
+    <!-- Front RIGHT Caster Wheel -->
+    <link name="front_right_caster">
+        <visual>
+            <geometry>
+                <sphere radius="0.025"/>
+            </geometry>
+             <material name="gray"/>
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="0.025"/>
+            </geometry>
+             <surface>
+                <friction>
+                    <ode><mu>0.1</mu><mu2>0.1</mu2><slip1>1.0</slip1><slip2>1.0</slip2></ode>
+                </friction>
+            </surface>
+        </collision>
+         <inertial>
+            <mass value="0.1"/><origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.0001" ixy="0.0" ixz="0.0" iyy="0.0001" iyz="0.0" izz="0.0001"/>
+        </inertial>
+    </link>
+    <joint name="front_right_caster_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="front_right_caster"/>
+        <!-- Position at front-right corner -->
+        <origin xyz="0.18 -0.1 -0.025" rpy="0 0 0"/>
+    </joint>
+
+    <!-- === END STABILITY MODIFICATION === -->
+
+
+    <!-- Left Drive Wheel -->
+    <link name="left_wheel">
+        <visual>
+            <geometry>
+                <cylinder radius="0.05" length="0.04"/>
+             </geometry>
+            <material name="black">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.05" length="0.04"/>
+             </geometry>
+            <surface>
+                <friction>
+                    <ode>
+                        <mu>1.0</mu><mu2>1.0</mu2><slip1>0.0</slip1><slip2>0.0</slip2>
+                    </ode>
+                </friction>
+            </surface>
+             </collision>
+        <inertial>
+            <mass value="1.0"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.0023" ixy="0.0" ixz="0.0" 
+                     iyy="0.0023" iyz="0.0" 
+                      izz="0.0042"/>
+        </inertial>
+    </link>
+
+    <!-- Left Drive Wheel Joint -->
+    <joint name="left_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_wheel"/>
+        <origin xyz="-0.08 0.15 -0.0" rpy="-1.5708 0 0"/>
+        <axis xyz="0 0 1"/>
+        <dynamics damping="0.2" friction="0.1"/>
+    </joint>
+
+    <!-- Right Drive Wheel -->
+    <link name="right_wheel">
+        <visual>
+             <geometry>
+                <cylinder radius="0.05" length="0.04"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+        <collision>
+             <geometry>
+                <cylinder radius="0.05" length="0.04"/>
+            </geometry>
+            <surface>
+                <friction>
+                    <ode>
+                         <mu>1.0</mu><mu2>1.0</mu2><slip1>0.0</slip1><slip2>0.0</slip2>
+                   </ode>
+                </friction>
+            </surface>
+        </collision>
+        <inertial>
+            <mass value="1.0"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.0023" ixy="0.0" ixz="0.0" 
+                      iyy="0.0023" iyz="0.0" 
+                     izz="0.0042"/>
+        </inertial>
+    </link>
+
+    <!-- Right Drive Wheel Joint -->
+    <joint name="right_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_wheel"/>
+        <origin xyz="-0.08 -0.15 -0.0" rpy="-1.5708 0 0"/> 
+        <axis xyz="0 0 1"/>
+         <dynamics damping="0.2" friction="0.1"/>
+    </joint>
+
+    <!-- Transmission definitions for Gazebo plugins -->
+    <transmission name="left_wheel_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="left_wheel_joint">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="left_wheel_motor">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+     </transmission>
+    <transmission name="right_wheel_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="right_wheel_joint">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="right_wheel_motor">
+            <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+    </transmission>
+
+    <!-- Gazebo visual materials -->
+    <gazebo reference="base_link">
+         <material>Gazebo/Blue</material>
+    </gazebo>
+    <gazebo reference="left_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+    <gazebo reference="right_wheel">
+        <material>Gazebo/Black</material>
+    </gazebo>
+    <gazebo reference="front_left_caster">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+    <gazebo reference="front_right_caster">
+        <material>Gazebo/Gray</material>
+    </gazebo>
+
+
+    <!-- Camera Link -->
+    <link name="camera_link">
+        <visual>
+            <geometry>
+                 <box size="0.010 0.03 0.03"/>
+            </geometry>
+            <material name="camera_red">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                 <box size="0.010 0.03 0.03"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.1"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.0001" ixy="0.0" ixz="0.0" 
+                  iyy="0.0001" iyz="0.0" 
+                     izz="0.0001"/>
+        </inertial>
+    </link>
+
+    <!-- Camera Joint (mounted on the front of the chassis) -->
+    <joint name="camera_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="camera_link"/>
+        <origin xyz="0.205 0 0.0" rpy="0 0 0"/>
+    </joint>
+    
+    <!-- Camera Optical Link (for correct image orientation) -->
+    <link name="camera_optical_link">
+     </link>
+    <joint name="camera_optical_joint" type="fixed">
+        <parent link="camera_link"/>
+        <child link="camera_optical_link"/>
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+    </joint>
+
+    <gazebo reference="camera_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+</robot>
