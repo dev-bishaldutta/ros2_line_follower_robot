@@ -1,118 +1,83 @@
-ROS 2 Line Follower Robot in Gazebo Warehouse
+<!--
+   ROS 2 Line Follower Robot | Professional README
+   Author: Bishal Dutta | 2025
+   Website: https://bishaldutta.tech
+-->
 
-This repository contains a ROS 2 package simulating an autonomous line follower robot navigating a congested warehouse environment using Gazebo. The robot employs a PID controller for smooth and accurate line tracking, including recovery behavior for sharp turns.
+<h1 align="center">🤖 ROS 2 Line Follower Robot – Gazebo Warehouse Simulation</h1>
 
-Author: Bishal Dutta
-Email: Bishalduttaoffcial@gmail.com
-Website: bishaldutta.tech
+<p align="center">
+  <img src="images/LFR_1.png" width="75%" alt="Robot Following Line"/>
+</p>
 
-![Robot Following Line](images/LFR_1.png)
+<p align="center">
+  <a href="https://ros.org/"><img src="https://img.shields.io/badge/ROS2-Jazzy-blue?style=for-the-badge"></a>
+  <a href="https://gazebosim.org/"><img src="https://img.shields.io/badge/Gazebo-Garden-orange?style=for-the-badge"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-green?style=for-the-badge"></a>
+  <img src="https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge">
+</p>
 
-Features
+---
 
-ROS 2 Integration: Built using standard ROS 2 (Python) practices.
+### 🧭 Overview
 
-Gazebo Simulation: Runs within the Gazebo simulator (gz sim) via ros_gz_sim.
+An advanced **ROS 2-based autonomous line follower robot** simulation built in **Gazebo**, designed to navigate a **realistic, congested warehouse** environment.  
+The robot uses a **camera sensor**, **PID control**, and **recovery logic** to follow black floor lines through narrow aisles and sharp turns—emulating industrial AGV (Automated Guided Vehicle) behavior.
 
-Intelligent Line Following: Uses a PID controller (follower.py) for robust line tracking, compensating for proportional, integral, and derivative errors.
+Built for **researchers, students, and developers** exploring **robot control, vision, and simulation in ROS 2**.
 
-Turn Recovery: Implements logic to search for the line after losing it during sharp turns (e.g., 90 degrees).
+---
 
-Stable Robot Model: URDF (robot.urdf) defines a stable 4-wheel robot base to prevent unrealistic pitching during acceleration.
+## 🧠 Key Capabilities
 
-Congested Warehouse World: Custom Gazebo world (warehouse_world.sdf) featuring walls, shelves, boxes, pallets, and pillars to simulate a cluttered environment.
+- ⚙️ **ROS 2 Integration:** Fully modular, using publishers/subscribers, launch files, and Gazebo bridges  
+- 🧩 **PID Line Control:** Smooth velocity control based on camera feedback  
+- 🔄 **Auto-Recovery Logic:** Handles line loss during 90° turns or visual occlusion  
+- 🦾 **Stable Kinematics:** Balanced URDF robot with realistic inertia, mass, and wheelbase  
+- 🏭 **Custom Warehouse World:** Walls, racks, boxes, and pallets for real-world complexity  
+- 📷 **Live Camera Feed:** Visual feedback via `rqt_image_view`  
+- 🧠 **Autonomous Start:** Robot initiates line following automatically upon launch  
 
-Automatic Start: The robot begins line following immediately upon launch.
+---
 
-Camera Visualization: Automatically launches rqt_image_view to display the robot's camera feed.
+## 🎥 Demonstration
 
-Simulation Outcome
+| Warehouse Navigation | Full Workspace view | Turn Recovery |
+|:--------------------:|:------------:|:-------------:|
+| ![Nav Demo](images/LFR.gif) | ![Camera View](images/LFR_3.png) | ![Turn Recovery](images/LFR_2.png) |
 
-(Here you should add your screenshots or ideally an animated GIF showing the robot working!)
+---
 
-Robot navigating the warehouse:
+## 🧩 System Overview
 
-Robot successfully making a turn:
+```bash
+line_follower_robot/
+├── config/
+│   └── gz_bridge.yaml              # ROS 2 ↔ Gazebo topic bridge definitions
+├── launch/
+│   └── line_follow.launch.py       # Main simulation launcher
+├── line_follower_robot/
+│   └── follower.py                 # PID controller & vision logic
+├── urdf/
+│   ├── robot.urdf                  # Robot model
+│   ├── camera.xacro                # Camera sensor module
+│   └── drive.xacro                 # Differential drive base
+├── worlds/
+│   └── warehouse_world.sdf         # Realistic warehouse environment
+├── images/
+│   ├── LFR_1.png
+│   ├── LFR_nav.gif
+│   └── LFR_turn.gif
+├── package.xml
+├── setup.py
+├── setup.cfg
+└── README.md
 
-Camera view during operation:
+## 🎥  Demonstration
 
-Prerequisites
-
-Ubuntu OS: Ubuntu 22.04 LTS recommended.
-
-ROS 2: ROS 2 Jazzy. Ensure colcon and standard build tools are installed.
-
-Gazebo: Gazebo Garden (or the version compatible with your ROS 2 ros_gz packages, e.g., ros-humble-ros-gz).
-
-Xacro: Ensure the xacro package is installed (sudo apt install ros-<distro>-xacro).
-
-Installation & Building
-
-Clone the Repository:
-Navigate to the src directory of your ROS 2 workspace (e.g., ~/ros2_ws/src) and clone this repository:
-
-cd ~/your_ros2_workspace/src
-git clone <your_repository_url> .
-
-
-(Replace <your_repository_url> with the actual URL after you create it on GitHub)
-
-Build the Package:
-Navigate back to the root of your workspace and build using colcon:
-
-cd ~/your_ros2_workspace
-colcon build --packages-select line_follower_robot
-
-
-Usage
-
-Source your Workspace:
-In a new terminal, navigate to your workspace root and source the setup file:
-
-cd ~/your_ros2_workspace
-source install/setup.bash
-
-
-(Remember to do this in every new terminal you use for this project)
-
-Launch the Simulation:
-Run the main launch file:
-
-ros2 launch line_follower_robot line_follow.launch.py
-
-
-Observe:
-
-Gazebo simulator will open, loading the warehouse world.
-
-The robot will spawn at the start position.
-
-The rqt_image_view window will open, showing the camera feed.
-
-The robot will automatically start following the black line path.
-
-Code Structure
-
-src/line_follower_robot/
-
-config/gz_bridge.yaml: Defines topic bridging between ROS 2 and Gazebo.
-
-launch/line_follow.launch.py: Main launch file to start Gazebo, spawn the robot, run nodes, etc.
-
-line_follower_robot/follower.py: The core Python node implementing the PID line following logic.
-
-urdf/: Contains the robot model files (robot.urdf, camera.xacro, drive.xacro).
-
-worlds/warehouse_world.sdf: The Gazebo world definition file.
-
-package.xml, setup.py, setup.cfg: ROS 2 package definition and build files.
-
-LICENSE: Apache 2.0 License file.
-
-License
-
-This project is licensed under the Apache License 2.0 - see the LICENSE file for details.
-
-Copyright 2025 Bishal Dutta (Bishalduttaoffcial@gmail.com)
-Camera Visualization: Automatically launches rqt_image_view to display the robot's camera feed.
-
+| Topic               | Message Type          | Description                             |
+| ------------------- | --------------------- | --------------------------------------- |
+| `/camera/image_raw` | `sensor_msgs/Image`   | RGB feed from front camera              |
+| `/cmd_vel`          | `geometry_msgs/Twist` | Velocity commands to differential drive |
+| `/odom`             | `nav_msgs/Odometry`   | Odometry data for localization          |
+| `/clock`            | `rosgraph_msgs/Clock` | Simulation clock from Gazebo            |
